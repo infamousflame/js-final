@@ -1,0 +1,16 @@
+.form-group{
+  width: calc(100% / 3 - 15px);
+}
+#description{
+  width: 96% !important;
+}
+#submit{
+  width: 23%;
+  margin: auto;
+}
+#movieDetails{
+    margin-top: -275px;
+}
+li{
+  list-style-type: none;
+}

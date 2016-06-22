@@ -2,11 +2,12 @@
 var list = document.createElement("ul");
 var movieArray = [];
 var button = document.getElementById("addMovie");
-var checkOut = document.getElementById("checkOut");
-var checkIn = document.getElementById("checkIn");
-
+var check = document.getElementById("check");
 var listElement;
 var dailyFee = 3;
+var movieDetails = document.getElementById("movieDetails");
+document.getElementById("movieForm").style.visibility = "hidden";
+document.getElementById("check").style.visibility = "hidden";
 document.getElementById("movieForm").addEventListener("submit", function (evt) {
   evt.preventDefault();
   console.log(getName("genre"));
@@ -36,36 +37,67 @@ document.getElementById("movieForm").addEventListener("submit", function (evt) {
   //list.appendChild(listElement);
   document.getElementById("movieForm").reset();
 });
+
+function movieDetailsFun(title, runningTimeInMinutes, year, genre, desc, checkedOut){
+  var titleE = e("h1", title, "", "");
+  var runningTimeInMinutesE = e("h2", "Running time " + runningTimeInMinutes + " Minutes", "", "");
+  var yearE = e("h2", "Year released " + year, "", "");
+  var genreE = e("h2", "Genre " + genre, "", "");
+  var descE = e("p", desc, "", "");
+
+  movieDetails.appendChild(titleE);
+  movieDetails.appendChild(runningTimeInMinutesE);
+  movieDetails.appendChild(yearE);
+  movieDetails.appendChild(genreE);
+  movieDetails.appendChild(descE);
+
+  if(checkedOut){
+    document.getElementById("check").innerHTML = "checkIn";
+    document.getElementById("check").setAttribute("checkVal", "checkin");
+    document.getElementById("check").style.visibility = "visible";
+  }else{
+    document.getElementById("check").innerHTML = "checkOut";
+    document.getElementById("check").setAttribute("checkVal", "checkOut");
+    document.getElementById("check").style.visibility = "visible";
+  }
+}
 document.getElementById("checkIn").style.visibility = "hidden";
 document.getElementById("checkOut").style.visibility = "hidden";
 
 list.addEventListener("click", function(evt){
-  document.getElementById("genre").innerHTML = movieArray[evt.target.attributes.movieID.textContent].genre;
-  document.getElementById("description").innerHTML = movieArray[evt.target.attributes.movieID.textContent].desc;
+  var target = evt.target.attributes.movieID.textContent;
+  document.getElementById("description").innerHTML = movieArray[target].desc;
   document.getElementById("movieForm").style.visibility = "hidden";
   document.getElementById("movieDetails").style.display = "block";
+  movieDetails.innerHTML = "";
+  movieDetailsFun(movieArray[target].title, movieArray[target].runningTimeInMinutes, movieArray[target].year, movieArray[target].genre, movieArray[target].desc, movieArray[target].checkedOut);
+
 
   console.log(movieArray[evt.target.attributes.movieID.textContent].checkedOut);
-  if(movieArray[evt.target.attributes.movieID.textContent].checkedOut){
-    document.getElementById("checkIn").style.visibility = "visible";
+  // if(movieArray[evt.target.attributes.movieID.textContent].checkedOut){
+  //   document.getElementById("checkIn").style.visibility = "visible";
+  //
+  // }else{
+  //   document.getElementById("checkOut").style.visibility = "visible";
+  // }
 
-  }else{
-    document.getElementById("checkOut").style.visibility = "visible";
-  }
-  checkIn.addEventListener("click", function(){
-    movieArray[evt.target.attributes.movieID.textContent].checkOut();
-    document.getElementById("checkIn").style.visibility = "hidden";
-    document.getElementById("checkOut").style.visibility = "visible";
 
+  check.addEventListener("click", function(){
+    if(check.attributes.checkVal.textContent == "checkOut"){
+      movieArray[evt.target.attributes.movieID.textContent].checkOut();
+      check.innerHTML = "checkIn";
+      check.setAttribute("checkVal", "checkIn");
+    }else{
+      movieArray[evt.target.attributes.movieID.textContent].checkIn();
+      check.setAttribute("checkVal", "checkOut");
+      check.innerHTML = "checkOut";
+
+    }
   });
-  checkOut.addEventListener("click", function(){
-    movieArray[evt.target.attributes.movieID.textContent].checkIn();
-    document.getElementById("checkIn").style.visibility = "visible";
-    document.getElementById("checkOut").style.visibility = "hidden";
 
-  });
 
-  alert(movieArray[evt.target.attributes.movieID.textContent].desc);
+
+  // alert(movieArray[evt.target.attributes.movieID.textContent].desc);
 });
 
 
@@ -73,9 +105,11 @@ button.addEventListener("click", function(){
   document.getElementById("movieForm").style.visibility = "visible";
   document.getElementById("checkIn").style.visibility = "hidden";
   document.getElementById("checkOut").style.visibility = "hidden";
-
+  movieDetails.innerHTML = "";
+  check.style.visibility = "hidden";
 });
 
 
 
-document.body.appendChild(list);
+
+document.getElementById("list").appendChild(list);
