@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final</title>
+  <link rel="stylesheet" href="css/design.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+
+  <div class="col-xs-6" id="list">
+    <div id="movieDetails"></div>
+  </div>
+  <div class="col-xs-6">
+    <form id="movieForm">
+      <input id="movieTitle" name="movieTitle" type="text" class="form-group" placeholder="Movie Title" />
+      <input id="runTime" name="runTime" type="number" class="form-group" placeholder="Running Time in minutes" />
+      <input id="release" name="release" type="number" class="form-group" placeholder="Year Released" />
+      <div>
+          <input name="genre" type="radio" value="comedy"> Comedy</input>
+          <input name="genre" type="radio" value="drama"> Drama</input>
+          <input name="genre" type="radio" value="action"> Action</input>
+          <input name="genre" type="radio" value="horror"> Horror</input>
+      </div>
+      <textarea id="description" rows="5" cols="56" class="form-group">Movie Description...</textarea>
+      <input type="submit" class="form-control" id="submit" />
+      </form>
+      <button id="addMovie" type="button">Add New Movie</button>
+      <div id="movieDetails">
+        <p id="genre"></p>
+        <p id="genre"></p>
+      </div>
+      <button id="checkIn">Check In Movie</button>
+      <button id="checkOut">Check Out Movie</button>
+    </div>
+  <script type="text/javascript" src="js/movie.js"></script>
+  <script type="text/javascript" src="js/helpers.js"></script>
+  <script type="text/javascript" src="js/movieapp.js"></script>
+</script>
+</body>
+</html>
