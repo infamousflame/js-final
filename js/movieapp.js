@@ -75,4 +75,7 @@ button.addEventListener("click", function(){
   document.getElementById("checkOut").style.visibility = "hidden";
 
 });
-document.getElementById("list").appendChild(list);
+
+
+
+document.body.appendChild(list);

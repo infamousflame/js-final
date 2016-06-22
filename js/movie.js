@@ -1,7 +1,13 @@
-
-(function () {
-//your code goes here
-
+(function() {
+/**
+ * Define our Movie constructor function.
+ * @param title
+ * @param runningTimeInMinutes
+ * @param year
+ * @param genre
+ * @param desc
+ * @constructor
+ */
 function Movie(title, runningTimeInMinutes, year, genre, desc, checkedOut) {
     this.title = title;
     this.runningTimeInMinutes = parseInt(runningTimeInMinutes, 10) || 0;
@@ -10,6 +16,12 @@ function Movie(title, runningTimeInMinutes, year, genre, desc, checkedOut) {
     this.desc = desc || "";
     this.checkedOut = false;
 }
+
+/**
+ * The movie prototype, lets you see a running time in hours and
+ * a preview snippet based on the description.
+ * @type {{runningTimeHours: Function, preview: Function}}
+ */
 Movie.prototype = {
     runningTimeHours: function runningTimeHours() {
         if (!isNaN(this.runningTimeInMinutes)) {
@@ -38,5 +50,6 @@ Movie.prototype = {
 
 };
 
+//WE MUST now stick the Movie object somewhere accessible
 window.Movie = Movie;
 }());
