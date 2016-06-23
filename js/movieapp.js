@@ -40,9 +40,9 @@ document.getElementById("movieForm").addEventListener("submit", function (evt) {
 
 function movieDetailsFun(title, runningTimeInMinutes, year, genre, desc, checkedOut){
   var titleE = e("h1", title, "", "");
-  var runningTimeInMinutesE = e("h2", "Running time " + runningTimeInMinutes + " Minutes", "", "");
-  var yearE = e("h2", "Year released " + year, "", "");
-  var genreE = e("h2", "Genre " + genre, "", "");
+  var runningTimeInMinutesE = e("h2", "Running time: " + runningTimeInMinutes + " Minutes", "", "");
+  var yearE = e("h2", "Year released: " + year, "", "");
+  var genreE = e("h2", "Genre: " + genre, "", "");
   var descE = e("p", desc, "", "");
 
   movieDetails.appendChild(titleE);
